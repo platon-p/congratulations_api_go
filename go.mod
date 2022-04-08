@@ -1,4 +1,4 @@
-module telebot
+module congratulations_api_go
 
 go 1.17
 
