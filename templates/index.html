@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<input type="text" placeholder="ФИО" id="fio_input">
+<br>
+
+<fieldset id="group1">
+    <input type="radio" name="gender" id="male" value="0" checked="checked">
+    <label for="male">Мужской</label>
+
+    <input type="radio" name="gender" id="female" value="1">
+    <label for="female">Женский</label>
+</fieldset>
+<br>
+
+<select id="select">
+    <option value="thanks">Благодарственное письмо</option>
+    <option value="birthday">День рождения</option>
+    <option value="new_year">Новый год</option>
+    <option value="8_march">8 марта</option>
+    <option value="23_feb">23 февраля</option>
+    <option value="9_may">9 мая</option>
+</select>
+<button id="submit">Посмотреть</button>
+
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>
+            <input type="range" style="width: calc(210px);"
+                   min="0" max="105" step="2" value="30" id="textX"
+                   oninput="document.getElementById('text').style.width = (210 - 2 * this.value) / 210 * 100 + '%'">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input style="-webkit-appearance: slider-vertical; width: 1.4em; height: calc(290*2px); transform: scale(1, -1)"
+                   type="range"
+                   id="greetingY"
+                   min="0" max="210" step="5" value="30"
+                   oninput="document.getElementById('greeting').style.top = this.value / 210 * 100 + '%'">
+        </td>
+        <td>
+            <input style="-webkit-appearance: slider-vertical; width: 1.4em; height: calc(290*2px); transform: scale(1, -1)"
+                   type="range"
+                   id="textY"
+                   min="-5" max="205" step="5" value="30"
+                   oninput="document.getElementById('text').style.top = this.value / 210 * 100 + '%'">
+        </td>
+        <td>
+
+            <div style="width: calc(210*2px); height: calc(290*2px); background-color: #eee"
+                 align="center">
+                <p style="background-color: #ccc; margin: 0; width: fit-content; position:relative;"
+                   id="greeting" contenteditable="true">
+                    <strong>
+                        Ullamco occaecat minim magna culpa aute
+                    </strong>
+                </p>
+                <p style="background-color: #ccc; margin: 0; text-align: justify; position:relative;"
+                   id="text" contenteditable="true">
+                    Ullamco occaecat minim magna culpa auteUllamco occaecat minim magna culpa aute
+                </p>
+            </div>
+        </td>
+    </tr>
+</table>
+<div>
+</div>
+
+<script>
+    const fio_input = document.getElementById("fio_input")
+    const male_button = document.getElementById("male")
+    const female_button = document.getElementById("female")
+    const select_list = document.getElementById("select")
+    const submit_button = document.getElementById("submit")
+
+    submit_button.onclick = function () {
+        path = "?name=" + fio_input.value.split(' ').join('+') + "&gender=" + (male_button ? "male" : "female") + "&type=" + select_list.value
+        console.log(path)
+        window.location.href = ("api/pdf" + path)
+    }
+</script>
+</body>
+</html>
