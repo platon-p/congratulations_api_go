@@ -182,8 +182,7 @@ func getPreset(c *fiber.Ctx) error {
 func updatePreset(c *fiber.Ctx) error {
 	id := c.Query("id")
 	param := strings.Split(strings.Split(c.OriginalURL(), "&")[1], "=")
-	fmt.Println("aaa")
-	db.Model(&Preset{}).Where("ID = "+id).Update(param[0], c.Query(param[0]))
+	db.Debug().Model(&Preset{}).Where("ID = "+id).Update(param[0], c.Query(param[0]))
 	return c.Redirect("preset?id=" + id)
 }
 
