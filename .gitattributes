@@ -1,0 +1,3 @@
+*.md linguist-detectable=false
+*.raml linguist-detectable=false
+templates/docs.raml linguist-detectable=false
