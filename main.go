@@ -32,16 +32,6 @@ type Preset struct {
 	Image     string  `json:"Image"`
 }
 
-var gramota = Preset{
-	Name:      "Благодарственное письмо",
-	PaperSize: "A4",
-	Text:      "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
-	Greeting:  "[Уважаемый][Уважаемая] {}!",
-	TextX:     30,
-	TextY:     60,
-	GreetingY: 30,
-	Image:     backgroundPath + "/gramota.jpg",
-}
 var db *gorm.DB
 
 func generateName() string {
@@ -54,12 +44,58 @@ func generateName() string {
 
 func sendPdf(c *fiber.Ctx) error {
 	name := c.Query("name")
-	//greeting := c.Query("greeting")
-	fname := proPdf(name, gramota)
+	id := c.Query("id")
+	gender := c.Query("gender")
+
+	gr := Preset{}
+	founded := db.First(&gr, "id = "+id).Error
+	if founded != nil {
+		return fiber.ErrBadRequest
+	}
+	fname := proPdf(name, gr, gender)
 	return c.SendFile(fname)
 }
 
-func proPdf(name string, cType Preset) string {
+func parseTextGenders(st, gender string) string {
+	if !strings.Contains(st, "[") {
+		return st
+	}
+	//first := true
+	//if gender != "Женский" {
+	//	first = false
+	//}
+
+	fmt.Println(strings.Split("aasdasd[", "[")[1] == "")
+
+	var sts []string
+	sts = strings.Split(st, "[")
+	var res []string
+	for _, v := range sts {
+		if strings.Contains(v, "]") {
+			el1, el2 := strings.Split(v, "]")[0], strings.Split(v, "]")[1]
+			res = append(res, el1)
+			if el2 != "" {
+				res = append(res, el2)
+			}
+		} else {
+			res = append(res, v)
+		}
+	}
+
+	mIndex := 2
+	if gender == "Мужской" {
+		mIndex = 1
+	}
+	sts = []string{}
+	for i, v := range res {
+		if i%3 == 0 || i%3 == mIndex {
+			sts = append(sts, v)
+		}
+	}
+	return strings.Join(sts, "")
+}
+
+func proPdf(name string, cType Preset, gender string) string {
 	doc, err := gopdfwrapper.NewDoc(18, 1)
 	if err != nil {
 		fmt.Print(err)
@@ -73,15 +109,17 @@ func proPdf(name string, cType Preset) string {
 
 	doc.SetY(cType.GreetingY)
 	_ = doc.SetFontStyle("bold")
-	greeting := strings.Replace(cType.Greeting, "{}", "%v", 1)
+	greeting := parseTextGenders(cType.Greeting, gender)
+	greeting = strings.Replace(greeting, "{}", "%v", 1)
+
 	_ = doc.CellWithOption(gopdf.PageSizeA4, fmt.Sprintf(greeting, name), gopdf.CellOption{Align: gopdf.Center})
 
 	_ = doc.SetFontStyle("")
 
 	lineN := 0.
 	lastSt := ""
-
-	for _, st := range strings.Split(cType.Text, " ") {
+	textt := parseTextGenders(cType.Text, gender)
+	for _, st := range strings.Split(textt, " ") {
 		l, _ := doc.MeasureTextWidth(lastSt + st + " ")
 		if l <= 210-cType.TextX*2+1 {
 			lastSt += st + " "
@@ -109,7 +147,7 @@ func initDatabase() {
 	if err != nil {
 		fmt.Println("Connection error")
 	}
-	db.AutoMigrate()
+	_ = db.AutoMigrate()
 }
 
 func newPreset(c *fiber.Ctx) error {
