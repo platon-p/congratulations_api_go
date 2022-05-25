@@ -18,6 +18,7 @@ import (
 const (
 	letters        = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890"
 	backgroundPath = "./backgrounds"
+	templatesPath  = "./templates"
 )
 
 type Preset struct {
@@ -215,10 +216,13 @@ func main() {
 	app.Static("/backgrounds", backgroundPath)
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.Render("./templates/index.html", fiber.Map{})
+		return c.Render(templatesPath+"/index.html", fiber.Map{})
 	})
 
 	api := app.Group("/api")
+	api.Get("/", func(c *fiber.Ctx) error {
+		return c.Render(templatesPath+"/docs.html", fiber.Map{})
+	})
 	api.Get("/pdf", sendPdf)
 	api.Post("/new_preset", newPreset)
 	api.Get("/preset", getPreset)
