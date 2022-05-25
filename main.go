@@ -23,14 +23,14 @@ const (
 
 type Preset struct {
 	gorm.Model
-	Name      string  `json:"name"`
-	PaperSize string  `json:"paperSize"`
-	Text      string  `json:"text"`
-	Greeting  string  `json:"greeting"`
-	TextX     float64 `json:"textX"`
-	TextY     float64 `json:"textY"`
-	GreetingY float64 `json:"greetingY"`
-	Image     string  `json:"image"`
+	Name      string  `json:"name" gorm:"column:name"`
+	PaperSize string  `json:"paperSize" gorm:"column:paperSize"`
+	Text      string  `json:"text" gorm:"column:text"`
+	Greeting  string  `json:"greeting" gorm:"column:greeting"`
+	TextX     float64 `json:"textX" gorm:"column:textX"`
+	TextY     float64 `json:"textY" gorm:"column:textY"`
+	GreetingY float64 `json:"greetingY" gorm:"column:greetingY"`
+	Image     string  `json:"image" gorm:"column:image"`
 }
 
 var db *gorm.DB
@@ -145,10 +145,10 @@ func proPdf(name string, cType Preset, gender string) string {
 func initDatabase() {
 	var err error
 	db, err = gorm.Open(sqlite.Open("database.db"), &gorm.Config{})
+	_ = db.AutoMigrate(&Preset{})
 	if err != nil {
 		fmt.Println("Connection error")
 	}
-	_ = db.AutoMigrate()
 }
 
 func newPreset(c *fiber.Ctx) error {
@@ -182,7 +182,7 @@ func getPreset(c *fiber.Ctx) error {
 func updatePreset(c *fiber.Ctx) error {
 	id := c.Query("id")
 	param := strings.Split(strings.Split(c.OriginalURL(), "&")[1], "=")
-
+	fmt.Println("aaa")
 	db.Model(&Preset{}).Where("ID = "+id).Update(param[0], c.Query(param[0]))
 	return c.Redirect("preset?id=" + id)
 }
