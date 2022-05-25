@@ -3,107 +3,141 @@
 title: Congratulations API
 baseUri: http://congratulationsp.ru/api
 version: v1
+mediaType: application/json
 
+description: |
+    This is API for creating Congratulatory cards    
+    Developer: [platon-p](https://github.com/platon-p)
 
 types:
-    preset: {
-        "type": object,
-        "$schema": "http://json-schema.org/draft-03/schema",
-        "id": "http://jsonschema.net",
-        "required": true,
-        "properties": {
-            "Name": {"type": "string"},
-            "PaperSize": {"type": "string"},
-            "Text": {"type": "string"},
-            "Greeting": {"type": "string"},
-            "TextX": {"type": "number"},
-            "TextY": {"type": "number"},
-            "GreetingY": {"type": "number"},
-            "Image": {"type": "string"}
+    preset:
+        type: object
+        properties:
+            ID: number
+            CreatedAt: string
+            UpdatedAt: string
+            DeletedAt?: string
+            Name: string
+            PaperSize: string
+            Text: string
+            Greeting: string
+            TextX: number
+            TextY: number
+            GreetingY: number
+            Image: string
+        example: {
+            "ID": 1,
+            "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
+            "UpdatedAt": "2022-05-06T13:37:37.620969+03:00",
+            "DeletedAt": null,
+            "Name": "Благодарственное письмо",
+            "PaperSize": "A4",
+            "Text": "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
+            "Greeting": "[Уважаемый][Уважаемая] {}!",
+            "TextX": 30,
+            "TextY": 60,
+            "GreetingY": 30,
+            "Image": "backgrounds/gramota.jpg"
         }
-    }
 
     presets:
-        type: array
+        type: preset[]
+
+    error:
+        type: string
+        madiaType: text/plain
+        properties:
+            error: string
+
+    idError:
+        type: error
+        example: |
+            error: Bad id
+
 
 /preset:
+    displayName: Preset
     get:
+        description: Returns information about preset by given ID
         queryParameters:
             id:
                 type: number
-                required: true
         responses:
             200:
                 body:
                     type: preset
-                    application/json:
-                        example: |
-                            {
-                                {
-                                  "ID": 1,
-                                  "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
-                                  "UpdatedAt": "2022-05-06T13:37:37.620969+03:00",
-                                  "DeletedAt": null,
-                                  "Name": "Благодарственное письмо",
-                                  "PaperSize": "A4",
-                                  "Text": "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
-                                  "Greeting": "[Уважаемый][Уважаемая] {}!",
-                                  "TextX": 30,
-                                  "TextY": 60,
-                                  "GreetingY": 30,
-                                  "Image": "backgrounds/gramota.jpg"
-                                }
-                            }
+            400:
+                body:
+                    text/plain:
+                        type: idError
+
+
 
 /presets:
+    displayName: List of Presets
     get:
+        description: Get list of available presets
         responses:
             200:
-              body:
-              type: presets
-                application/json:
-                  example: |
-                    [
-                      {
-                        "ID": 1,
-                        "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
-                        "UpdatedAt": "2022-05-06T13:37:37.620969+03:00",
-                        "DeletedAt": null,
-                        "Name": "Благодарственное письмо",
-                        "PaperSize": "A4",
-                        "Text": "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
-                        "Greeting": "[Уважаемый][Уважаемая] {}!",
-                        "TextX": 30,
-                        "TextY": 60,
-                        "GreetingY": 30,
-                        "Image": "backgrounds/gramota.jpg"
-                      },
-                      {
-                        "ID": 2,
-                        "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
-                        "UpdatedAt": "2022-05-08T17:21:43.488331+03:00",
-                        "DeletedAt": null,
-                        "Name": "9 мая",
-                        "PaperSize": "A4",
-                        "Text": "asdsadasjkdnasjknasdjaskdnjk",
-                        "Greeting": "Здравствуйте, {}!",
-                        "TextX": 30,
-                        "TextY": 60,
-                        "GreetingY": 30,
-                        "Image": "backgrounds/gramota.jpg"
-                      },
-                      {
-                        "ID": 3,
-                        "CreatedAt": "2022-05-08T16:32:08.2887+03:00",
-                        "UpdatedAt": "2022-05-12T10:16:34.192872+03:00",
-                        "DeletedAt": null,
-                        "Name": "День рождения",
-                        "PaperSize": "A4",
-                        "Text": "asdsadasjkdnasjknasdjaskdnjk",
-                        "Greeting": "Здравствуйте, {}!",
-                        "TextX": 30,
-                        "TextY": 60,
-                        "GreetingY": 30,
-                        "Image": "backgrounds/gramota.jpg"
-                      }
-                    ]
+                body:
+                    type: presets
+                    example: |
+                        [
+                            {
+                                "ID": 1,
+                                "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
+                                "UpdatedAt": "2022-05-06T13:37:37.620969+03:00",
+                                "DeletedAt": null,
+                                "Name": "Благодарственное письмо",
+                                "PaperSize": "A4",
+                                "Text": "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
+                                "Greeting": "[Уважаемый][Уважаемая] {}!",
+                                "TextX": 30,
+                                "TextY": 60,
+                                "GreetingY": 30,
+                                "Image": "backgrounds/gramota.jpg"
+                            },
+                            {
+                                "ID": 2,
+                                "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
+                                "UpdatedAt": "2022-05-08T17:21:43.488331+03:00",
+                                "DeletedAt": null,
+                                "Name": "9 мая",
+                                "PaperSize": "A4",
+                                "Text": "asdsadasjkdnasjknasdjaskdnjk",
+                                "Greeting": "Здравствуйте, {}!",
+                                "TextX": 30,
+                                "TextY": 60,
+                                "GreetingY": 30,
+                                "Image": "backgrounds/gramota.jpg"
+                            },
+                            {
+                                "ID": 3,
+                                "CreatedAt": "2022-05-08T16:32:08.2887+03:00",
+                                "UpdatedAt": "2022-05-12T10:16:34.192872+03:00",
+                                "DeletedAt": null,
+                                "Name": "День рождения",
+                                "PaperSize": "A4",
+                                "Text": "asdsadasjkdnasjknasdjaskdnjk",
+                                "Greeting": "Здравствуйте, {}!",
+                                "TextX": 30,
+                                "TextY": 60,
+                                "GreetingY": 30,
+                                "Image": "backgrounds/gramota.jpg"
+                            }
+                        ]
+
+/pdf:
+    displayName: Generate PDF
+    get:
+        description: Generate PDF by id of preset, gender and name
+        queryParameters:
+            id: number
+        responses:
+            200:
+                body:
+                    application/pdf:
+            400:
+                body:
+                    text/plain:
+                        type: idError
