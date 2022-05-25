@@ -170,62 +170,63 @@ pre code {
 .required {
   color: #f00;
 }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Congratulations API <small>version v1</small></h1><p>http://congratulationsp.ru/api</p><p>This is API for creating Congratulatory cards<br>Developer: <a href="https://github.com/platon-p">platon-p</a></p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="preset" class="panel-title">Preset</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_preset"><span class="parent"></span>/preset</a> <span class="methods"><a href="#preset_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_preset" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#preset_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns information about preset by given ID</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="preset_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/preset</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns information about preset by given ID</p></div><ul class="nav nav-tabs"><li class="active"><a href="#preset_get_request" data-toggle="tab">Request</a></li><li><a href="#preset_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="preset_get_request"><h3>Query Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(number)</em></li></ul></div><div class="tab-pane" id="preset_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>ID</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>CreatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>UpdatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>DeletedAt</strong>: <em>(string)</em></li><li><strong>Name</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>PaperSize</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>Text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>Greeting</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>TextX</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>TextY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>GreetingY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>Image</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
-  "ID": 1,
-  "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
-  "UpdatedAt": "2022-05-06T13:37:37.620969+03:00",
-  "DeletedAt": null,
-  "Name": "Благодарственное письмо",
-  "PaperSize": "A4",
-  "Text": "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
-  "Greeting": "[Уважаемый][Уважаемая] {}!",
-  "TextX": 30,
-  "TextY": 60,
-  "GreetingY": 30,
-  "Image": "backgrounds/gramota.jpg"
-}</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: text/plain</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>error: Bad id
-</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="presets" class="panel-title">List of Presets</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_presets"><span class="parent"></span>/presets</a> <span class="methods"><a href="#presets_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_presets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#presets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get list of available presets</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="presets_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/presets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get list of available presets</p></div><ul class="nav nav-tabs"><li class="active"><a href="#presets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="presets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of preset</p><p><strong>Items</strong>: preset</p><div class="items"><ul><li><strong>ID</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>CreatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>UpdatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>DeletedAt</strong>: <em>(string)</em></li><li><strong>Name</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>PaperSize</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>Text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>Greeting</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>TextX</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>TextY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>GreetingY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>Image</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Congratulations API <small>version v1</small></h1><p>http://congratulationsp.ru/api</p><p>This is API for creating Congratulatory cards<br>Developer: <a href="https://github.com/platon-p">platon-p</a></p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="preset" class="panel-title">Preset</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_preset"><span class="parent"></span>/preset</a> <span class="methods"><a href="#preset_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_preset" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#preset_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Returns information about preset by given ID</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="preset_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/preset</h4></div><div class="modal-body"><div class="alert alert-info"><p>Returns information about preset by given ID</p></div><ul class="nav nav-tabs"><li class="active"><a href="#preset_get_request" data-toggle="tab">Request</a></li><li><a href="#preset_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="preset_get_request"><h3>Query Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(number)</em></li></ul></div><div class="tab-pane" id="preset_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>ID</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>CreatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>UpdatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>DeletedAt</strong>: <em>(string)</em></li><li><strong>name</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>paperSize</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>greeting</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>textX</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>textY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>greetingY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>image</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+    "ID": 2,
+    "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
+    "UpdatedAt": "2022-05-08T17:21:43.488331+03:00",
+    "DeletedAt": null,
+    "name": "9 мая",
+    "paperSize": "A4",
+    "text": "asdsadasjkdnasjknasdjaskdnjk",
+    "greeting": "Здравствуйте, {}!",
+    "textX": 30,
+    "textY": 60,
+    "greetingY": 30,
+    "image": "backgrounds/gramota.jpg"
+}
+</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: text/plain</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>error: Bad id
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="presets" class="panel-title">List of Presets</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_presets"><span class="parent"></span>/presets</a> <span class="methods"><a href="#presets_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_presets" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#presets_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get list of available presets</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="presets_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/presets</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get list of available presets</p></div><ul class="nav nav-tabs"><li class="active"><a href="#presets_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="presets_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: array of preset</p><p><strong>Items</strong>: preset</p><div class="items"><ul><li><strong>ID</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>CreatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>UpdatedAt</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>DeletedAt</strong>: <em>(string)</em></li><li><strong>name</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>paperSize</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>text</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>greeting</strong>: <em><span class="required">required</span>(string)</em></li><li><strong>textX</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>textY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>greetingY</strong>: <em><span class="required">required</span>(number)</em></li><li><strong>image</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><p><strong>Example</strong>:</p><div class="examples"><pre><code>[
     {
         "ID": 1,
         "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
         "UpdatedAt": "2022-05-06T13:37:37.620969+03:00",
         "DeletedAt": null,
-        "Name": "Благодарственное письмо",
-        "PaperSize": "A4",
-        "Text": "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
-        "Greeting": "[Уважаемый][Уважаемая] {}!",
-        "TextX": 30,
-        "TextY": 60,
-        "GreetingY": 30,
-        "Image": "backgrounds/gramota.jpg"
+        "name": "Благодарственное письмо",
+        "paperSize": "A4",
+        "text": "Ea tempor in pariatur ea enim nulla eiusmod. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor. Nulla fugiat consequat occaecat est id consectetur Lorem voluptate ut amet sunt tempor.",
+        "greeting": "[Уважаемый][Уважаемая] {}!",
+        "textX": 30,
+        "textY": 60,
+        "greetingY": 30,
+        "image": "backgrounds/gramota.jpg"
     },
     {
         "ID": 2,
         "CreatedAt": "2022-05-06T13:37:37.620969+03:00",
         "UpdatedAt": "2022-05-08T17:21:43.488331+03:00",
         "DeletedAt": null,
-        "Name": "9 мая",
-        "PaperSize": "A4",
-        "Text": "asdsadasjkdnasjknasdjaskdnjk",
-        "Greeting": "Здравствуйте, {}!",
-        "TextX": 30,
-        "TextY": 60,
-        "GreetingY": 30,
-        "Image": "backgrounds/gramota.jpg"
+        "name": "9 мая",
+        "paperSize": "A4",
+        "text": "asdsadasjkdnasjknasdjaskdnjk",
+        "greeting": "Здравствуйте, {}!",
+        "textX": 30,
+        "textY": 60,
+        "greetingY": 30,
+        "image": "backgrounds/gramota.jpg"
     },
     {
         "ID": 3,
         "CreatedAt": "2022-05-08T16:32:08.2887+03:00",
-        "UpdatedAt": "2022-05-12T10:16:34.192872+03:00",
+        "UpdatedAt": "2022-05-08T16:32:08.2887+03:00",
         "DeletedAt": null,
-        "Name": "День рождения",
-        "PaperSize": "A4",
-        "Text": "asdsadasjkdnasjknasdjaskdnjk",
-        "Greeting": "Здравствуйте, {}!",
-        "TextX": 30,
-        "TextY": 60,
-        "GreetingY": 30,
-        "Image": "backgrounds/gramota.jpg"
+        "name": "9 мая",
+        "paperSize": "A4",
+        "text": "asdsadasjkdnasjknasdjaskdnjk",
+        "greeting": "Здравствуйте, {}!",
+        "textX": 30,
+        "textY": 60,
+        "greetingY": 30,
+        "image": "backgrounds/gramota/jpg"
     }
 ]
 </code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="pdf" class="panel-title">Generate PDF</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_pdf"><span class="parent"></span>/pdf</a> <span class="methods"><a href="#pdf_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel_pdf" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#pdf_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Generate PDF by id of preset, gender and name</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="pdf_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/pdf</h4></div><div class="modal-body"><div class="alert alert-info"><p>Generate PDF by id of preset, gender and name</p></div><ul class="nav nav-tabs"><li class="active"><a href="#pdf_get_request" data-toggle="tab">Request</a></li><li><a href="#pdf_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="pdf_get_request"><h3>Query Parameters</h3><ul><li><strong>id</strong>: <em><span class="required">required</span>(number)</em></li></ul></div><div class="tab-pane" id="pdf_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/pdf</p><p><strong>Type</strong>: any</p><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><h3>Body</h3><p><strong>Media type</strong>: text/plain</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>error: Bad id

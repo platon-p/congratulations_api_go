@@ -23,14 +23,14 @@ const (
 
 type Preset struct {
 	gorm.Model
-	Name      string  `json:"Name"`
-	PaperSize string  `json:"PaperSize"`
-	Text      string  `json:"Text"`
-	Greeting  string  `json:"Greeting"`
-	TextX     float64 `json:"TextX"`
-	TextY     float64 `json:"TextY"`
-	GreetingY float64 `json:"GreetingY"`
-	Image     string  `json:"Image"`
+	Name      string  `json:"name"`
+	PaperSize string  `json:"paperSize"`
+	Text      string  `json:"text"`
+	Greeting  string  `json:"greeting"`
+	TextX     float64 `json:"textX"`
+	TextY     float64 `json:"textY"`
+	GreetingY float64 `json:"greetingY"`
+	Image     string  `json:"image"`
 }
 
 var db *gorm.DB
@@ -230,7 +230,7 @@ func main() {
 	api.Get("/delete_preset", deletePreset)
 	api.Get("/presets", getPresets)
 
-	err := app.Listen(":8000")
+	err := app.Listen(":8080")
 	if err != nil {
 		log.Fatalln("Oops...")
 	}
