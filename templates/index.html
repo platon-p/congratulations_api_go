@@ -77,17 +77,55 @@
 </div>
 
 <script>
-    const fio_input = document.getElementById("fio_input")
-    const male_button = document.getElementById("male")
-    const female_button = document.getElementById("female")
-    const select_list = document.getElementById("select")
-    const submit_button = document.getElementById("submit")
+    const fioInput = document.querySelector("#fio_input")
+    const maleButton = document.querySelector("#male")
+    const femaleButton = document.querySelector("#female")
+    const selectList = document.querySelector("#select")
+    const submitButton = document.querySelector("#submit")
 
-    submit_button.onclick = function () {
-        path = "?name=" + fio_input.value.split(' ').join('+') + "&gender=" + (male_button ? "male" : "female") + "&type=" + select_list.value
+    submitButton.addEventListener('click', () => {
+        path = "?name=" + fio_input.value.split(' ').join('+') 
+             + "&gender=" + (male_button ? "male" : "female") 
+             + "&type=" + select_list.value
         console.log(path)
         window.location.href = ("api/pdf" + path)
-    }
+    })
+
+    // SkyGuy's part xD
+    function sendRequest(method, url, body = null) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest()
+            xhr.open(method, url)
+
+            xhr.responseType = "json"
+            if (method.toLowerCase() == "post") {
+                xhr.setRequestHeader("Content-Type", "application/json")
+            }
+
+            xhr.onload = () => {
+                if (xhr.status >= 400) {
+                    reject(xhr.response)
+                } else {
+                    resolve(xhr.response)
+                }
+            }
+
+            xhr.onerror = () => reject(xhr.response)
+
+            method.toLowerCase() == "post" ? 
+                xhr.send(JSON.stringify(body)) 
+                : xhr.send()
+        })
+    } 
+
+    const request = sendRequest("GET", "127.0.0.1:8080/api/presets")
+    request.then(data => {
+        let selectListInner = ""
+        data.map(item => selectListInner += `<option value=${item.id}>${item.name}</option>\n`)
+        return selectListInner
+    }).then(selectListInner => {
+        selectList.innerHTML = selectListInner
+    })
 </script>
 </body>
 </html>
