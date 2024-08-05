@@ -219,9 +219,6 @@ func main() {
 	})
 
 	api := app.Group("/api")
-	api.Get("/", func(c *fiber.Ctx) error {
-		return c.Render(templatesPath+"/docs.html", fiber.Map{})
-	})
 	api.Get("/pdf", sendPdf)
 	api.Post("/new_preset", newPreset)
 	api.Get("/preset", getPreset)
