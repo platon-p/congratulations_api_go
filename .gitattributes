@@ -1,3 +1,2 @@
-*.md linguist-detectable=false
-*.raml linguist-detectable=false
-./templates/docs.html linguist-detectable=false
+*.raml linguist-vendored
+templates/docs.html linguist-vendored
